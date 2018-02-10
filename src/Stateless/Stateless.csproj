@@ -6,7 +6,8 @@
     <NeutralLanguage>en-US</NeutralLanguage>
     <VersionPrefix>4.0.1</VersionPrefix>
     <Authors>Stateless Contributors</Authors>
-    <TargetFrameworks>netstandard1.0;net45;net40</TargetFrameworks>
+    <!--<TargetFrameworks>netstandard1.0;net45;net40</TargetFrameworks>-->
+    <TargetFramework>net35</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Stateless</AssemblyName>

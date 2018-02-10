@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Stateless
 {
@@ -19,7 +18,6 @@ namespace Stateless
             internal Reflection.InvocationInfo Description => _actionDescription;
 
             public abstract void Execute();
-            public abstract Task ExecuteAsync();
 
             public class Sync : ActivateActionBehaviour
             {
@@ -34,35 +32,6 @@ namespace Stateless
                 public override void Execute()
                 {
                     _action();
-                }
-
-                public override Task ExecuteAsync()
-                {
-                    Execute();
-                    return TaskResult.Done;
-                }
-            }
-
-            public class Async : ActivateActionBehaviour
-            {
-                readonly Func<Task> _action;
-
-                public Async(TState state, Func<Task> action, Reflection.InvocationInfo actionDescription)
-                    : base(state, actionDescription)
-                {
-                    _action = action;
-                }
-
-                public override void Execute()
-                {
-                    throw new InvalidOperationException(
-                        $"Cannot execute asynchronous action specified in OnActivateAsync for '{_state}' state. " +
-                         "Use asynchronous version of Activate [ActivateAsync]");
-                }
-
-                public override Task ExecuteAsync()
-                {
-                    return _action();
                 }
             }
         }
